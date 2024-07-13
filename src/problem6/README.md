@@ -72,7 +72,7 @@ This module provides an API service for a website score board. The service inclu
 
    ```sh
    git clone https://github.com/redtime02/code-challenge.git
-  ```
+   ```
 
 2. Install dependencies:
 
