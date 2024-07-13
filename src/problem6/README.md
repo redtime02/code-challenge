@@ -29,6 +29,7 @@ This module provides an API service for a website score board. The service inclu
   "user_id": "string",
   "increment": "integer"
 }
+````
 
 **Response**:
 - `200 OK`: Score updated successfully.
