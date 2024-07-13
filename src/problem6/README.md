@@ -107,31 +107,21 @@ This module provides an API service for a website score board. The service inclu
 
 ## Execution Flow Diagram
 
-```plaintext
-+------------+       +----------------+       +--------------+       +---------------+       +-------------+
-|  User      |       |  Frontend      |       |  API Server  |       |  Database     |       |  WebSocket  |
-+------------+       +----------------+       +--------------+       +---------------+       +-------------+
-      |                      |                      |                        |                      |
-      |  Perform Action      |                      |                        |                      |
-      |--------------------->|                      |                        |                      |
-      |                      |                      |                        |                      |
-      |                      |  POST /api/score/update  |                        |                      |
-      |                      |----------------------->|                        |                      |
-      |                      |                      |  Validate JWT Token      |                      |
-      |                      |                      |------------------------->|                      |
-      |                      |                      |  Update Score in DB      |                      |
-      |                      |                      |------------------------->|                      |
-      |                      |                      |  Respond to Client       |                      |
-      |                      |                      |<-------------------------|                      |
-      |                      |                      |                        |                      |
-      |                      |  Update Scoreboard   |                        |                      |
-      |                      |<----------------------|                        |                      |
-      |                      |                      |                        |                      |
-      |                      |  WebSocket Notification  |                        |                      |
-      |                      |<----------------------|                        |                      |
-      |                      |                      |                        |                      |
-      |  Scoreboard Update   |                      |                        |                      |
-      |<---------------------|                      |                        |                      |
+```mermaid
+graph TD;
+    User-->Frontend;
+    Frontend-->APIServer;
+    APIServer-->Database;
+    APIServer-->WebSocket;
+    Frontend-->WebSocket;
+    User-->Frontend;
+
+    APIServer-->ValidateToken;
+    ValidateToken-->UpdateDB;
+    UpdateDB-->RespondToClient;
+    RespondToClient-->UpdateScoreboard;
+    WebSocket-->ScoreboardUpdate;
+
 ```
 
 ## Additional Comments
